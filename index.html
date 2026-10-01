@@ -460,12 +460,12 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
 .fbtn[aria-pressed="true"]::before{transform:none}
 .arc-list{border-top:1px solid var(--line);position:relative}
 .arc-row{border-bottom:1px solid var(--line);position:relative;background:rgba(8,8,10,.35)}
-.arc-head{position:relative;isolation:isolate;width:100%;display:grid;grid-template-columns:150px minmax(0,1fr) 170px 150px 30px;gap:24px;align-items:center;padding:20px 22px}
+.arc-head{position:relative;isolation:isolate;width:100%;-webkit-tap-highlight-color:transparent;display:grid;grid-template-columns:150px minmax(0,1fr) 170px 150px 30px;gap:24px;align-items:center;padding:20px 22px}
 .arc-head::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(200,255,61,.10),rgba(200,255,61,.02));transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
-.arc-head:hover::before,.arc-row.open .arc-head::before{transform:scaleX(1)}
+.arc-row.open .arc-head::before{transform:scaleX(1)}
+@media (hover:hover) and (pointer:fine){.arc-head:hover::before{transform:scaleX(1)}.arc-head:hover .arc-title{transform:scale(1.045)}}
 .arc-period{font-family:var(--f-mono);font-size:12px;color:var(--muted);white-space:nowrap}
 .arc-title{font-family:var(--f-display);font-weight:650;font-variation-settings:"wght" 650,"wdth" 100;font-size:clamp(16px,1.75vw,26px);line-height:1.25;transform-origin:0 50%;transition:transform .5s var(--ease),color .4s;min-width:0}
-.arc-head:hover .arc-title{transform:scale(1.045)}
 .arc-title .pl{font-style:normal;font-family:var(--f-mono);font-size:10px;font-weight:700;letter-spacing:.06em;background:var(--accent);color:var(--accent-ink);padding:2px 7px;border-radius:999px;margin-left:10px;vertical-align:4px}
 .arc-co{font-size:13px;color:var(--fg-2)}
 .arc-tag{font-family:var(--f-mono);font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -611,7 +611,12 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
   .arc-title{grid-column:1;grid-row:2}
   .arc-co{grid-column:1;grid-row:3}
   .arc-plus{grid-column:2;grid-row:1/span 3}
-  .arc-inner{grid-template-columns:1fr;padding:0 16px 24px}
+  .arc-inner{grid-template-columns:1fr;row-gap:26px;padding:22px 16px 34px}
+  .arc-row.open{background:rgba(8,8,10,.82)}
+  .arc-inner h5{margin-bottom:10px}
+  .arc-inner h5:not(:first-child){margin-top:24px}
+  .arc-inner ul{gap:10px}
+  .arc-inner p{line-height:1.75}
   .arc-inner>div:first-child,.arc-inner>div:nth-child(2),.arc-inner>div:nth-child(3){grid-column:1}
   .stack-cols{grid-template-columns:1fr}
   .pit{height:min(70vh,520px)}
@@ -2561,10 +2566,10 @@ function setupArchive() {
       head.setAttribute('aria-expanded', String(open));
       if (REDUCE) { body.style.height = open ? 'auto' : '0px'; ScrollTrigger.refresh(); return; }
       const list = $('#arcList');
-      clearTimeout(list._rf); list._rf = setTimeout(() => ScrollTrigger.refresh(), 820);
+      clearTimeout(list._rf); list._rf = setTimeout(() => ScrollTrigger.refresh(true), 820);
       if (open) {
         gsap.fromTo(body, { height: 0 }, { height: 'auto', duration: 0.75, ease: 'expo.out' });
-        gsap.fromTo($$('.arc-anim', body), { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7, ease: 'expo.out', stagger: 0.06, delay: 0.08 });
+        gsap.fromTo($$('.arc-anim', body), { y: FINE ? 18 : 0, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7, ease: 'expo.out', stagger: 0.06, delay: 0.08 });
       } else {
         gsap.to(body, { height: 0, duration: 0.55, ease: 'expo.inOut' });
       }
