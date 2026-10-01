@@ -318,6 +318,7 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:26em}
 .merge span{padding:6px 12px;border-radius:999px;border:1px solid var(--line-2);white-space:nowrap;transition:color .6s,opacity .6s,text-decoration-color .6s}
 .merge .m-c{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
 .merge .m-arrow{border:0;padding:0;color:var(--muted)}
+.merge.plat span{color:var(--fg-2)}
 .merge .m-a,.merge .m-b{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(255,138,122,.85)}
 .merge.fresh .m-a,.merge.fresh .m-b{color:var(--fg);text-decoration-color:transparent}
 .merge.fresh .m-arrow,.merge.fresh .m-c{opacity:0}
@@ -910,7 +911,7 @@ const STR = {
     'pet.pill1': '세션 <b class="g">42%</b> · 주간 <b class="g">17%</b> · Fable <b class="g">12%</b>',
     'pet.pill2': '리셋 세션 3시간 42분 후 · 주간 2일 3시간 후',
     'v.compress.l2': '필요한 정보만 추출', 'v.compress.unit': '월 처리량', 'v.compress.badge': '10배 증가', 'v.compress.cap': '월 처리량 10배 증가 · 택배 HDD 전달 → 온라인 충전식 결제',
-    'v.strand.ring': '분석자 업무 부담', 'v.strand.cap': '분석자가 요청받아 하던 수작업 분석을 고객 셀프 업로드 자동화로 전환', 'v.strand.bar': '분석자 문의', 'v.strand.barcap': '월 문의 75% 감소',
+    'v.strand.ring': '분석자 업무 부담', 'v.strand.cap': '분석자가 요청받아 하던 수작업 분석을, 고객이 직접 실행하도록 자동화', 'v.strand.from': '분석자 수작업', 'v.strand.to': '고객 셀프 업로드',
     'v.lock.t': 'FTP 접속 방식 제거 후 외부 서버 접속률', 'v.lock.bar': '납품 방식 문의', 'v.lock.barcap': '월 문의 80% 감소', 'v.lock.web': '웹 단일 시스템',
     'v.timer.t': '검색 속도 5분 → 1초 이내', 'v.timer.bar': '논문 파싱 기간', 'v.timer.before': '1개월', 'v.timer.after': '2주', 'v.timer.cap': '1개월 → 2주 (50% 단축)',
     'v.code.old': 'ProC · Delphi · Windows · 20년+ 운영', 'v.code.ok1': '✓ Web 전환 가능성 검증 완료', 'v.code.ok2': '✓ ProC/Delphi 인력난 해소 방안 마련',
@@ -947,7 +948,7 @@ const STR = {
     'pet.pill1': 'Session <b class="g">42%</b> · Weekly <b class="g">17%</b> · Fable <b class="g">12%</b>',
     'pet.pill2': 'reset Session in 3h 42m · Weekly in 2d 3h',
     'v.compress.l2': 'only what’s needed', 'v.compress.unit': 'monthly throughput', 'v.compress.badge': 'up 10×', 'v.compress.cap': 'Monthly throughput up 10× · HDD by courier → online prepaid billing',
-    'v.strand.ring': 'analyst workload', 'v.strand.cap': 'Manual analysis on request → customer self-upload automation', 'v.strand.bar': 'Analyst inquiries', 'v.strand.barcap': 'Monthly inquiries down 75%',
+    'v.strand.ring': 'analyst workload', 'v.strand.cap': 'Analysis that analysts ran by hand on request now runs as customer self-service', 'v.strand.from': 'Manual analyst work', 'v.strand.to': 'Customer self-upload',
     'v.lock.t': 'External server access after removing FTP', 'v.lock.bar': 'Delivery-method inquiries', 'v.lock.barcap': 'Monthly inquiries down 80%', 'v.lock.web': 'Single web system',
     'v.timer.t': 'Search time 5 min → under 1 s', 'v.timer.bar': 'Paper parsing time', 'v.timer.before': '1 month', 'v.timer.after': '2 weeks', 'v.timer.cap': '1 month → 2 weeks (−50%)',
     'v.code.old': 'ProC · Delphi · Windows · 20+ years in service', 'v.code.ok1': '✓ Web migration feasibility verified', 'v.code.ok2': '✓ Plan for the ProC/Delphi talent shortage',
@@ -1058,9 +1059,9 @@ const DATA = {
       points: { ko: ['글마다 Skill · Subagent · Guide · Hook · Output Style · Plugin 중 맞는 스펙을 판정', '요약은 4개 언어 (EN · KO · ES · JA)', '원문에 없는 역할·패턴·스크립트는 만들지 않는 규칙'],
                 en: ['Decides per post: Skill · Subagent · Guide · Hook · Output Style · Plugin', 'Summaries in 4 languages (EN · KO · ES · JA)', 'Rule: never invent roles, patterns or scripts that aren’t in the source'] },
       tags: ['Python', 'Claude Code', 'Agent Skills'] },
-    { id: 'social', cls: 'c-social', title: 'ai-social-batch-publisher', kind: 'Private · Content Pipeline', url: '', meta: ['Private repo'],
-      desc: { ko: 'Claude 블로그 변환 저장소와 DeepLearning.AI The Batch의 AI 글을 가져와, 로컬 Codex를 작업자로 써서 카드뉴스와 숏폼 영상으로 만드는 배치 프로젝트입니다.',
-              en: 'A batch pipeline that takes AI posts from the Claude blog conversion repo and DeepLearning.AI’s The Batch, and uses a local Codex as the worker to turn them into card news and short-form video.' },
+    { id: 'social', cls: 'c-social', title: 'ai-social-batch-publisher', kind: 'Private · Content Pipeline', url: '', meta: ['Live · @ai.info.from.officials', 'Private repo'], metaUrl: 'https://www.instagram.com/ai.info.from.officials/',
+      desc: { ko: 'Claude 블로그 변환 저장소와 DeepLearning.AI The Batch의 AI 글을 가져와, 로컬 Codex를 작업자로 써서 카드뉴스와 숏폼 영상으로 만드는 배치 프로젝트입니다. 지금 Codex가 인스타그램 @ai.info.from.officials 에 자동으로 올리고 있습니다.',
+              en: 'A batch pipeline that takes AI posts from the Claude blog conversion repo and DeepLearning.AI’s The Batch, and uses a local Codex as the worker to turn them into card news and short-form video. Codex now posts them automatically to Instagram @ai.info.from.officials.' },
       points: { ko: ['소스별 새 글을 찾아 카드뉴스 10장 · 캡션 · 릴스/쇼츠 대본 생성', 'OpenAI API 키 없이 codex exec 세션으로 콘텐츠 JSON 생성', 'Instagram Carousel 1:1 · Reels/Shorts 9:16 프레임 + ElevenLabs TTS', 'SVG/HTML로 때운 산출물은 검증에서 떨어뜨리고 다시 생성'],
                 en: ['Finds new posts per source and generates 10 carousel cards, captions and Reels/Shorts scripts', 'Generates content JSON in codex exec sessions — no OpenAI API key', 'Instagram Carousel 1:1 · Reels/Shorts 9:16 frames + ElevenLabs TTS', 'Outputs faked with SVG/HTML fail validation and are regenerated'] },
       tags: ['TypeScript', 'Bun', 'Codex CLI', 'gpt-image-2', 'ElevenLabs'] }
@@ -1305,7 +1306,7 @@ function renderAll() {
 
   $('#labGrid').innerHTML = DATA.lab.map((l) => `
     <article class="lab-card ${l.cls}" data-lab="${l.id}">
-      <div class="lab-top"><span class="lab-kind">${esc(l.kind)}</span><span class="lab-meta">${l.meta.map((m, k) => `<span class="tag${k === 0 && l.id !== 'social' ? ' acc' : ''}">${esc(m)}</span>`).join('')}</span></div>
+      <div class="lab-top"><span class="lab-kind">${esc(l.kind)}</span><span class="lab-meta">${l.meta.map((m, k) => k === 0 && l.metaUrl ? `<a class="tag acc" href="${l.metaUrl}" target="_blank" rel="noopener" data-cursor="Open">${esc(m)}</a>` : `<span class="tag${k === 0 ? ' acc' : ''}">${esc(m)}</span>`).join('')}</span></div>
       <h3 class="lab-title">${l.url ? `<a href="${l.url}" target="_blank" rel="noopener" data-cursor="Open">${esc(l.title)}<span class="arrow" aria-hidden="true">↗</span></a>` : esc(l.title)}</h3>
       <p class="lab-desc">${esc(L(l.desc))}</p>
       <ul class="lab-points">${L(l.points).map((p) => `<li>${esc(p)}</li>`).join('')}</ul>
@@ -1369,7 +1370,8 @@ const VIZ_HTML = {
           <div class="ring-t"><b>−<span class="cnt" data-from="0" data-to="80">80</span>%</b><span>${esc(t('v.strand.ring'))}</span></div></div>
         <p class="kpi-cap">${esc(t('v.strand.cap'))}</p>
       </div>
-      <div class="bar" style="--s:.25"><div class="bar-k"><span>${esc(t('v.strand.bar'))}</span><b>−<span class="cnt" data-from="0" data-to="75">75</span>%</b></div><div class="bar-t"><i class="bar-f"></i></div><p class="bar-cap">${esc(t('v.strand.barcap'))}</p></div>
+      <div class="merge"><span class="m-a">${esc(t('v.strand.from'))}</span><span class="m-arrow">→</span><span class="m-c">${esc(t('v.strand.to'))}</span></div>
+      <div class="merge plat"><span>Electron · Desktop</span><span>Web</span><span>AWS ECS</span></div>
     </div>`,
   lock: () => `
     <div class="viz viz-lock">
@@ -1377,7 +1379,7 @@ const VIZ_HTML = {
         <svg class="lock" viewBox="0 0 64 84" aria-hidden="true"><path class="lock-sh" d="M18 40V26a14 14 0 0 1 28 0v14"/><rect class="lock-bd" x="7" y="40" width="50" height="40" rx="10"/><circle class="lock-kh" cx="32" cy="57" r="4.5"/><path class="lock-kl" d="M32 61v7"/></svg>
         <div class="lock-t"><b class="scr">0%</b><span>${esc(t('v.lock.t'))}</span></div>
       </div>
-      <div class="bar" style="--s:.2"><div class="bar-k"><span>${esc(t('v.lock.bar'))}</span><b>−<span class="cnt" data-from="0" data-to="80">80</span>%</b></div><div class="bar-t"><i class="bar-f"></i></div><p class="bar-cap">${esc(t('v.lock.barcap'))}</p></div>
+      <div class="bar" style="--s:.2"><div class="bar-k"><span>${esc(t('v.lock.bar'))}</span><b>−<span class="cnt" data-from="0" data-to="80">80</span>%</b></div><div class="bar-t"><i class="bar-f"></i></div></div>
       <div class="merge"><span class="m-a">URL</span><span class="m-b">FTP</span><span class="m-arrow">→</span><span class="m-c">${esc(t('v.lock.web'))}</span></div>
     </div>`,
   timer: () => {
@@ -2163,12 +2165,14 @@ const VIZ = {
     }
   },
   strand: {
-    prep(c) { gsap.set($('.r-fg', c), { strokeDashoffset: 314.16 }); gsap.set($('.bar-f', c), { scaleX: 1 }); setCnt(c, 'from'); },
+    prep(c) { gsap.set($('.r-fg', c), { strokeDashoffset: 314.16 }); $('.merge', c).classList.add('fresh'); gsap.set($$('.plat span', c), { autoAlpha: 0, y: 10 }); setCnt(c, 'from'); },
     play(c) {
       return gsap.timeline()
         .to($('.r-fg', c), { strokeDashoffset: 314.16 * 0.2, duration: 1.8, ease: 'expo.out' }, 0.1)
-        .to($('.bar-f', c), { scaleX: 0.25, duration: 1.6, ease: 'expo.inOut' }, 0.3)
-        .add(countAll(c, 1.7), 0.1);
+        .add(countAll(c, 1.7), 0.1)
+        .add(() => $('.merge', c).classList.remove('fresh'), 1.2)
+        .fromTo($('.m-c', c), { scale: 0.6 }, { scale: 1, duration: 0.8, ease: 'back.out(2.5)' }, 1.25)
+        .to($$('.plat span', c), { autoAlpha: 1, y: 0, duration: 0.6, ease: 'expo.out', stagger: 0.08 }, 1.6);
     }
   },
   lock: {
