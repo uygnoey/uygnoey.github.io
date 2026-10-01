@@ -197,9 +197,10 @@ a:hover .roll>span,.nav a.is-active .roll>span{transform:translateY(-100%)}
 .tag.live i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 1.2s steps(1) infinite}
 
 /* ============ about ============ */
-.about-lead{font-size:clamp(23px,3.45vw,56px);line-height:1.34;font-weight:700;letter-spacing:-.028em;max-width:23em}
-html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:26em}
+.about-lead{text-wrap:balance;font-size:clamp(23px,3.45vw,56px);line-height:1.34;font-weight:700;letter-spacing:-.028em;max-width:23em}
+html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
 .about-lead em{font-style:normal;color:var(--accent)}
+.about-lead .nw{white-space:nowrap}
 .about-body{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-top:clamp(48px,9vh,110px)}
 .about-text{grid-column:1/span 6;font-size:clamp(16px,1.22vw,19px);color:var(--fg-2);display:flex;flex-direction:column;gap:1.05em}
 .facts{grid-column:8/span 5;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);align-self:start}
@@ -752,7 +753,7 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:26em}
   <section class="sec about" id="about" data-formation="wave" data-label="(01) ABOUT" aria-labelledby="about-t">
     <div class="sec-head"><span data-scramble>(01) About</span><span data-i18n="about.r">소개</span></div>
     <h2 class="sr-only" id="about-t">About</h2>
-    <p class="about-lead" id="aboutLead" data-i18n-html="about.lead">2016년부터 <em>방송 · 광고 · 이커머스 · 금융 · 바이오</em>.<br>지금은 <em>데이터 전처리</em>.</p>
+    <p class="about-lead" id="aboutLead" data-i18n-html="about.lead">2016년부터 <em><span class="nw">방송 ·</span> <span class="nw">광고 ·</span> <span class="nw">이커머스 ·</span> <span class="nw">금융 ·</span> <span class="nw">바이오</span></em>.<br>지금은 <em>데이터 전처리</em>.</p>
     <div class="about-body">
       <div class="about-text">
         <p data-split="lines" data-i18n="about.p1">Java와 Spring Boot를 중심으로 Kotlin, Go, Python, TypeScript로도 서비스를 만들었고, 백엔드부터 프론트엔드, AWS 인프라까지 직접 설계하고 구현해 왔습니다.</p>
@@ -901,7 +902,7 @@ const STR = {
     'hero.handleTxt': 'github.com/uygnoey ⟲ 거꾸로 읽으면 yeongyu',
     'hero.now': '재직중',
     'about.r': '소개',
-    'about.lead': '2016년부터 <em>방송 · 광고 · 이커머스 · 금융 · 바이오</em>.<br>지금은 <em>데이터 전처리</em>.',
+    'about.lead': '2016년부터 <em><span class="nw">방송 ·</span> <span class="nw">광고 ·</span> <span class="nw">이커머스 ·</span> <span class="nw">금융 ·</span> <span class="nw">바이오</span></em>.<br>지금은 <em>데이터 전처리</em>.',
     'about.p1': 'Java와 Spring Boot를 중심으로 Kotlin, Go, Python, TypeScript로도 서비스를 만들었고, 백엔드부터 프론트엔드, AWS 인프라까지 직접 설계하고 구현해 왔습니다.',
     'about.p2': 'TheraSTRAND P1과 DEEPOMICS FFPE Plus에서는 PL로 기획·개발·운영 전 과정을 리딩했고, 개인 프로젝트로 Claude Pet, llmwiki 같은 AI 도구를 만들며 오픈소스에도 기여하고 있습니다.',
     'fact.edu.v': '중부대학교 컴퓨터학과', 'fact.edu.d': '공학사 · 2009.03 — 2015.02', 'fact.lang.v': 'New York 어학연수', 'fact.career.d': '10개 회사',
@@ -938,7 +939,7 @@ const STR = {
     'hero.handleTxt': 'github.com/uygnoey ⟲ read it backwards: yeongyu',
     'hero.now': 'Current',
     'about.r': 'Intro',
-    'about.lead': 'Since 2016 — <em>broadcast · ads · commerce · finance · bio</em>.<br>Now — <em>data preprocessing</em>.',
+    'about.lead': 'Since 2016 — <em><span class="nw">broadcast ·</span> <span class="nw">ads ·</span> <span class="nw">commerce ·</span> <span class="nw">finance ·</span> <span class="nw">bio</span></em>.<br>Now — <em>data preprocessing</em>.',
     'about.p1': 'Centered on Java and Spring Boot, I’ve also built services in Kotlin, Go, Python and TypeScript, designing and implementing everything from the back end to the front end and AWS infrastructure myself.',
     'about.p2': 'As PL on TheraSTRAND P1 and DEEPOMICS FFPE Plus I led planning, development and operations end to end. On my own I build AI tools like Claude Pet and llmwiki and contribute to open source.',
     'fact.edu.v': 'Joongbu University, Computer Science', 'fact.edu.d': 'B.Eng. · 2009.03 — 2015.02', 'fact.lang.v': 'Language study in New York', 'fact.career.d': '10 companies',
