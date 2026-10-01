@@ -872,9 +872,17 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:26em}
    i18n — 한국어 / English
    ========================================================= */
 const LANG = (() => {
-  const q = new URLSearchParams(location.search).get('lang');
-  if (q === 'ko' || q === 'en') return q;
-  try { const s = localStorage.getItem('yy-lang'); if (s === 'ko' || s === 'en') return s; } catch (e) {}
+  const params = new URLSearchParams(location.search);
+  const q = params.get('lang');
+  if (q === 'ko' || q === 'en') {
+    // a shared ?lang= link still works, but the parameter is remembered and dropped from the address bar
+    let kept = false;
+    try { localStorage.setItem('yy-lang', q); kept = true; } catch (e) {}
+    try { sessionStorage.setItem('yy-lang', q); kept = true; } catch (e) {}
+    if (kept) { params.delete('lang'); const rest = params.toString(); history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash); }
+    return q;
+  }
+  try { const s = sessionStorage.getItem('yy-lang') || localStorage.getItem('yy-lang'); if (s === 'ko' || s === 'en') return s; } catch (e) {}
   const langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'ko'];
   return langs.some((l) => /^ko\b/i.test(l)) ? 'ko' : 'en';
 })();
@@ -1245,13 +1253,15 @@ function applyStatic() {
 
 function switchLang(to) {
   if (to === LANG) return;
-  try { localStorage.setItem('yy-lang', to); } catch (e) {}
+  let kept = false;
+  try { localStorage.setItem('yy-lang', to); kept = true; } catch (e) {}
+  try { sessionStorage.setItem('yy-lang', to); kept = true; } catch (e) {}
   ss.set('yy-fast', '1');
   if (currentSection && currentSection !== 'top') ss.set('yy-sec', currentSection);
   const url = new URL(location.href);
-  url.searchParams.set('lang', to);
   url.hash = '';
-  const go = () => { location.href = url.toString(); };
+  if (kept) url.searchParams.delete('lang'); else url.searchParams.set('lang', to); // storage blocked → fall back to the URL
+  const go = () => { location.replace(url.toString()); };
   if (REDUCE || !gsap) return go();
   if (menuOpen) setMenu(false);
   const ld = $('#loader');
