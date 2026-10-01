@@ -1,0 +1,56 @@
+name: Refresh GitHub stats
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-stats
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch repo stats
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOS: uygnoey/claude-pet
+        run: |
+          set -euo pipefail
+          mkdir -p data
+          entries=()
+          for repo in $REPOS; do
+            version=$(gh api "repos/$repo/releases/latest" --jq .tag_name 2>/dev/null || echo "")
+            releases=$(gh api --paginate "repos/$repo/releases?per_page=100" --jq '.[].id' | wc -l | tr -d ' ')
+            commits=$(gh api -i "repos/$repo/commits?per_page=1" | sed -n 's/^[Ll]ink:.*page=\([0-9]*\)>; rel="last".*/\1/p')
+            [ -n "$commits" ] || commits=$(gh api "repos/$repo/commits?per_page=1" --jq length)
+            entries+=("$(jq -n --arg r "$repo" --arg v "$version" --argjson rel "$releases" --argjson c "$commits" \
+              '{($r): {version: $v, releases: $rel, commits: $c}}')")
+          done
+          printf '%s\n' "${entries[@]}" | jq -s --arg t "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            '{updated: $t, repos: (add)}' > data/github.json.new
+          # only the numbers decide whether to commit, not the timestamp
+          if [ -f data/github.json ] && [ "$(jq -S .repos data/github.json)" = "$(jq -S .repos data/github.json.new)" ]; then
+            rm data/github.json.new
+            echo "No change"
+          else
+            mv data/github.json.new data/github.json
+            cat data/github.json
+          fi
+
+      - name: Commit if changed
+        run: |
+          if [ -n "$(git status --porcelain data/github.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/github.json
+            git commit -m "Refresh GitHub stats"
+            git push
+          fi

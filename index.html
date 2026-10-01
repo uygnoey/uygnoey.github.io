@@ -1070,7 +1070,7 @@ const DATA = {
   ],
 
   lab: [
-    { id: 'pet', cls: 'c-pet', title: 'Claude Pet', kind: 'Open Source · Desktop App', url: 'https://github.com/uygnoey/claude-pet', meta: ['claude-pet.yeongyu.me ↗', 'v1.0.1', '29 releases'], metaUrl: 'https://claude-pet.yeongyu.me/',
+    { id: 'pet', cls: 'c-pet', title: 'Claude Pet', kind: 'Open Source · Desktop App', url: 'https://github.com/uygnoey/claude-pet', meta: ['claude-pet.yeongyu.me ↗', 'v1.0.1', '29 releases'], metaUrl: 'https://claude-pet.yeongyu.me/', gh: { repo: 'uygnoey/claude-pet', keys: [null, 'version', 'releases'] },
       desc: { ko: '화면에 떠서 Claude 토큰 사용량을 지켜보는 데스크톱 펫. macOS(AppKit 네이티브, Apple 공증)와 Windows를 지원하고, 사용량 필로 세션·주간·모델별 사용률과 리셋 시각을 보여 줍니다.',
               en: 'A desktop pet that floats on your screen and watches your Claude token usage. Runs on macOS (native AppKit, Apple-notarized) and Windows, with a usage pill showing session, weekly and per-model usage plus reset times.' },
       points: { ko: ['마우스가 다가가면 손을 흔들고, 스스로 돌아다니며 멀티 모니터를 건너다님', '토큰 소비가 급증하면 경고색 펄스, 세션 리셋을 감지하면 점프', 'pet.json + spritesheet로 내 펫 추가, 앱 안에서 자동 업데이트', 'README와 랜딩 페이지 4개 언어 (KO · EN · JA · ES)'],
@@ -1304,6 +1304,22 @@ function switchLang(to) {
 /* =========================================================
    render (vanilla — runs even if animation libs fail)
    ========================================================= */
+// repo stats refreshed every 3 hours by .github/workflows/github-stats.yml; the values in DATA stay as the fallback
+async function loadGhStats() {
+  try {
+    const res = await fetch('data/github.json', { cache: 'no-cache' });
+    if (!res.ok) return;
+    const repos = (await res.json()).repos || {};
+    $$('[data-gh]').forEach((el) => {
+      const [repo, key] = el.dataset.gh.split('|'), r = repos[repo];
+      if (!r) return;
+      if (key === 'version' && r.version) el.textContent = r.version;
+      if (key === 'releases' && r.releases) el.textContent = `${r.releases} releases`;
+      if (key === 'commits' && r.commits) el.textContent = `${r.commits} commits`;
+    });
+  } catch (e) { /* keep the built-in values */ }
+}
+
 function renderAll() {
   const totalProjects = DATA.projects.length;
   $$('[data-total-projects]').forEach((el) => { el.textContent = totalProjects; if (el.dataset.count) el.dataset.count = totalProjects; });
@@ -1343,7 +1359,7 @@ function renderAll() {
 
   $('#labGrid').innerHTML = DATA.lab.map((l) => `
     <article class="lab-card ${l.cls}" data-lab="${l.id}">
-      <div class="lab-top"><span class="lab-kind">${esc(l.kind)}</span><span class="lab-meta">${l.meta.map((m, k) => k === 0 && l.metaUrl ? `<a class="tag acc" href="${l.metaUrl}" target="_blank" rel="noopener" data-cursor="Open">${esc(m)}</a>` : `<span class="tag${k === 0 ? ' acc' : ''}">${esc(m)}</span>`).join('')}</span></div>
+      <div class="lab-top"><span class="lab-kind">${esc(l.kind)}</span><span class="lab-meta">${l.meta.map((m, k) => k === 0 && l.metaUrl ? `<a class="tag acc" href="${l.metaUrl}" target="_blank" rel="noopener" data-cursor="Open">${esc(m)}</a>` : `<span class="tag${k === 0 ? ' acc' : ''}"${l.gh && l.gh.keys[k] ? ` data-gh="${l.gh.repo}|${l.gh.keys[k]}"` : ''}>${esc(m)}</span>`).join('')}</span></div>
       <h3 class="lab-title">${l.url ? `<a href="${l.url}" target="_blank" rel="noopener" data-cursor="Open">${esc(l.title)}<span class="arrow" aria-hidden="true">↗</span></a>` : esc(l.title)}</h3>
       <p class="lab-desc">${esc(L(l.desc))}</p>
       <ul class="lab-points">${L(l.points).map((p) => `<li>${esc(p)}</li>`).join('')}</ul>
@@ -1511,6 +1527,7 @@ function failOpen(reason) {
 async function boot() {
   safe('i18n', applyStatic);
   safe('render', renderAll);
+  loadGhStats();
   gsap = window.gsap; ScrollTrigger = window.ScrollTrigger;
   if (!gsap || !ScrollTrigger) { failOpen('gsap missing'); return; }
   const plugins = [ScrollTrigger, window.SplitText, window.Flip, window.ScrambleTextPlugin].filter(Boolean);
