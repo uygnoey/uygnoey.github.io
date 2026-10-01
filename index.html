@@ -723,7 +723,7 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
     <a href="#stack"><span>Stack</span></a>
     <a href="#contact"><span>Contact</span></a>
   </nav>
-  <div class="menu-foot"><span>github.com/uygnoey · instagram.com/uygnoey</span></div>
+  <div class="menu-foot"><span>mail@yeongyu.me · github.com/uygnoey</span></div>
 </div>
 
 <div class="hud" aria-hidden="true"><span id="hudSec">(00) INDEX</span><span id="hudPts">— PTS</span><span id="hudFps">— FPS</span><span id="hudClock">SEOUL --:--:--</span></div>
@@ -855,9 +855,10 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
   <section class="sec contact" id="contact" data-formation="at" data-label="(07) CONTACT" aria-labelledby="contact-t">
     <div class="sec-head"><span data-scramble>(07) Contact</span><span data-i18n="contact.r">연락처</span></div>
     <h2 class="sr-only" id="contact-t">Contact</h2>
-    <p class="contact-k">GitHub</p>
-    <a class="mail-big" id="mailBig" href="https://github.com/uygnoey" target="_blank" rel="noopener" data-cursor="Open">uygnoey</a>
+    <p class="contact-k">Email</p>
+    <a class="mail-big" id="mailBig" href="mailto:mail@yeongyu.me" data-cursor="Mail">mail@yeongyu.me</a>
     <div class="contact-actions">
+      <button class="btn magnetic" id="copyMail" type="button"><span id="copyTxt" data-i18n="contact.copy">메일 주소 복사</span></button>
       <a class="btn magnetic" href="https://github.com/uygnoey" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
       <a class="btn magnetic" href="https://www.instagram.com/uygnoey/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a>
       <a class="btn magnetic" href="https://yeongyucareer.notion.site/info" target="_blank" rel="noopener"><span data-i18n="contact.notion">Notion 경력기술서</span> <span aria-hidden="true">↗</span></a>
@@ -1875,7 +1876,7 @@ async function initGL() {
 
   function setFormation(name, dur = 2.1) {
     if (name === current) return;
-    if (name === 'at' && !F.at) F.at = textFormation(N, '</>') || F.sphere;
+    if (name === 'at' && !F.at) F.at = textFormation(N, '@') || F.sphere;
     const target = F[name];
     if (!target) return;
     const p = U.uProgress.value, fa = aFrom.array, ta = aTo.array;
@@ -1891,7 +1892,7 @@ async function initGL() {
     if (turbTl) turbTl.kill();
     turbTl = gsap.timeline().to(U.uTurb, { value: 1, duration: dur * 0.32, ease: 'power2.out' }).to(U.uTurb, { value: 0, duration: dur * 0.68, ease: 'power3.inOut' });
     gsap.to(U.uWave, { value: name === 'wave' ? 1 : 0, duration: dur, ease: 'power2.inOut', overwrite: true });
-    gsap.to(U.uAccentAll, { value: name === 'at' ? 1 : 0, duration: dur, ease: 'power2.inOut', overwrite: true });
+    gsap.to(U.uAccentAll, { value: 0, duration: dur, ease: 'power2.inOut', overwrite: true });
     current = name;
     place(name, dur);
     if (SPIN[name] === 0) {
@@ -2657,6 +2658,15 @@ function setupContact() {
     }
   }
   gsap.from('.contact-actions .btn', { y: 30, autoAlpha: 0, duration: 1, ease: 'expo.out', stagger: 0.08, scrollTrigger: { trigger: '.contact-actions', start: 'top 92%' } });
+  const btn = $('#copyMail'), txt = $('#copyTxt');
+  btn.addEventListener('click', async () => {
+    let ok = false;
+    try { await navigator.clipboard.writeText('mail@yeongyu.me'); ok = true; } catch (e) { ok = false; }
+    const msg = ok ? t('contact.copied') : 'mail@yeongyu.me';
+    if (window.ScrambleTextPlugin && !REDUCE) gsap.to(txt, { duration: 0.6, scrambleText: { text: msg, chars: '01#*', speed: 1 } });
+    else txt.textContent = msg;
+    gsap.delayedCall(2.4, () => { txt.textContent = t('contact.copy'); });
+  });
 }
 
 /* =========================================================
