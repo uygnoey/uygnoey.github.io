@@ -31,7 +31,7 @@
   window.gtag = function () { dataLayer.push(arguments); };
   var choice = null;
   try { choice = localStorage.getItem('yy-consent'); } catch (e) {}
-  gtag('consent', 'default', { analytics_storage: choice === 'granted' ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  gtag('consent', 'default', { analytics_storage: choice === 'denied' ? 'denied' : 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   gtag('js', new Date());
   gtag('config', 'G-49HR6H9XNZ');
 })();
@@ -971,7 +971,7 @@ const STR = {
     'lab.intro': 'GitHub에서 직접 만들고 기여한 것들입니다. Claude 사용량을 보여 주는 데스크톱 펫부터 AI가 관리하는 지식 위키, 블로그와 AI 뉴스를 가공하는 자동화, 그리고 7만 스타 프로젝트의 i18n 기여까지.',
     'arc.all': '전체', 'arc.contrib': '참여 · 기여도', 'arc.tasks': '주요 업무', 'arc.results': '성과', 'arc.tech': '사용 기술', 'arc.tools': '사용 도구',
     'stack.r': '기술 스택',
-    'contact.r': '연락처', 'contact.copy': '메일 주소 복사', 'contact.copied': '복사했습니다 ✓', 'contact.notion': 'Notion 경력기술서', 'cookie.msg': '방문 통계를 위해 Google Analytics 쿠키를 써도 될까요? 거절해도 사이트는 똑같이 동작해요.', 'cookie.ok': '동의', 'cookie.no': '거절', 'cookie.settings': '쿠키 설정',
+    'contact.r': '연락처', 'contact.copy': '메일 주소 복사', 'contact.copied': '복사했습니다 ✓', 'contact.notion': 'Notion 경력기술서', 'cookie.msg': '방문 통계를 위해 Google Analytics 쿠키를 써요. 원하지 않으면 거절할 수 있고, 사이트는 똑같이 동작해요.', 'cookie.ok': '확인', 'cookie.no': '거절', 'cookie.settings': '쿠키 설정',
     'ld.profile': 'profile ....... 양연규 · Full-Stack Engineer',
     'pet.pill1': '세션 <b class="g">42%</b> · 주간 <b class="g">17%</b> · Fable <b class="g">12%</b>',
     'pet.pill2': '리셋 세션 3시간 42분 후 · 주간 2일 3시간 후',
@@ -1008,7 +1008,7 @@ const STR = {
     'lab.intro': 'Things I’ve built and contributed on GitHub — from a desktop pet that shows Claude usage to an AI-maintained knowledge wiki, automations that turn blog posts and AI news into content, and an i18n contribution to a 70k-star project.',
     'arc.all': 'All', 'arc.contrib': 'Role · Contribution', 'arc.tasks': 'Key work', 'arc.results': 'Results', 'arc.tech': 'Tech', 'arc.tools': 'Tools',
     'stack.r': 'Tech stack',
-    'contact.r': 'Contact', 'contact.copy': 'Copy email', 'contact.copied': 'Copied ✓', 'contact.notion': 'Notion career doc', 'cookie.msg': 'May this site use Google Analytics cookies to count visits? The site works the same if you decline.', 'cookie.ok': 'Accept', 'cookie.no': 'Decline', 'cookie.settings': 'Cookie settings',
+    'contact.r': 'Contact', 'contact.copy': 'Copy email', 'contact.copied': 'Copied ✓', 'contact.notion': 'Notion career doc', 'cookie.msg': 'This site uses Google Analytics cookies to count visits. You can decline, and the site works the same.', 'cookie.ok': 'OK', 'cookie.no': 'Decline', 'cookie.settings': 'Cookie settings',
     'ld.profile': 'profile ....... Yeongyu Yang · Full-Stack Engineer',
     'pet.pill1': 'Session <b class="g">42%</b> · Weekly <b class="g">17%</b> · Fable <b class="g">12%</b>',
     'pet.pill2': 'reset Session in 3h 42m · Weekly in 2d 3h',
