@@ -1934,10 +1934,9 @@ function runLoader(fast) {
     const term = $('#ldTerm'), num = $('#ldNum');
     const counter = { v: 0 };
     const tl = gsap.timeline({ onComplete: resolve });
-    const total = fast ? 0.7 : 2.5;
+    const total = fast ? 1.6 : 2.5;  // language switch: same boot log, a bit quicker
     tl.to(counter, { v: 100, duration: total, ease: 'power2.inOut', onUpdate: () => { num.textContent = String(Math.round(counter.v)).padStart(3, '0'); } }, 0);
     tl.fromTo('.ld-bar i', { scaleX: 0 }, { scaleX: 1, duration: total, ease: 'power2.inOut' }, 0);
-    if (fast) return;
     const lines = [
       { t: '$ ./boot --user yeongyu --lang ' + LANG, cmd: true },
       { t: t('ld.profile') },
@@ -1954,9 +1953,9 @@ function runLoader(fast) {
       term.appendChild(row);
       const tx = row.lastElementChild;
       gsap.set(row, { autoAlpha: 0 });
-      const at = 0.08 + i * 0.32;
+      const at = 0.06 + i * (fast ? 0.2 : 0.32);
       tl.set(row, { autoAlpha: 1 }, at);
-      if (window.ScrambleTextPlugin) tl.to(tx, { duration: 0.34, scrambleText: { text: ln.t, chars: '░▒▓<>/\\|=+*#01', speed: 1 }, ease: 'none' }, at);
+      if (window.ScrambleTextPlugin) tl.to(tx, { duration: fast ? 0.24 : 0.34, scrambleText: { text: ln.t, chars: '░▒▓<>/\\|=+*#01', speed: 1 }, ease: 'none' }, at);
       else tl.set(tx, { textContent: ln.t }, at);
     });
   });
