@@ -1,0 +1,78 @@
+# Yeongyu Yang (양연규) — Full-Stack Engineer
+
+> A Full-Stack Engineer who mainly uses Java and Spring Boot, yet builds confidently in any language. Korean software engineer working since 2016 across broadcasting, advertising, e-commerce, finance and bio; currently at Oprimed building a data preprocessing solution.
+
+- Website: https://yeongyu.me/
+- GitHub: https://github.com/uygnoey
+- Career document (Notion): https://yeongyucareer.notion.site/info
+- Email: mail@yeongyu.me
+- Updated: 2026-10-02
+
+## Quick facts
+- Role: Full-Stack Engineer (Java · Spring Boot first; also Kotlin, Go, Python, TypeScript)
+- Current: Oprimed — data preprocessing solution (current employer)
+- Led as PL: DEEPOMICS FFPE Plus, TheraSTRAND P1 (THERAGEN BIO), EnergyShares JP Admin (Illuminarean)
+- Projects on record: 28
+- Stack: Back-End: Java · Kotlin · Python · Go · Node · Spring Boot · JPA · MyBatis · Echo · GORM · FastAPI | Front-End: TypeScript · JavaScript · HTML · CSS3 · React · Svelte · SvelteKit · TailwindCSS · Thymeleaf · Handlebars · jQuery · Electron | Data: MySQL · Oracle · PostgreSQL · MariaDB · MongoDB · FerretDB · Elasticsearch | Infra & Pipeline: AWS (S3 · RDS · ECR · ECS) · Nginx · RabbitMQ · Airflow · SMTP · Docker | Collaboration: Git · SVN · Jira · Confluence · Slack | AI: Claude Code · Cursor AI · Codex · ChatGPT · Claude · Perplexity · ElevenLabs
+
+## Experience
+- **Oprimed** (Current): Developing a data preprocessing solution
+- **THERAGEN BIO** (2023.07 — 2026.03): Building platforms for DNA/RNA experiments and analysis. Projects: DEEPOMICS FFPE Plus · PL, TheraSTRAND P1 · PL, TheraRADIANT, TheraMARINA, Celleb
+- **KIDB** (2023.03 — 2023.06): Maintained the bond & money brokerage system between securities firms and banks, plus a next-generation POC/MVP moving the ProC/Delphi legacy to the web. Projects: Next-Generation System Project
+- **U&IT Soft** (2022.11 — 2023.02, Platform Development Team): Broadcasting & telecom solutions — built LG HelloVision’s e-commerce service 「제철장터」. Projects: LG HelloVision 제철장터
+- **MBI Solution** (2022.05 — 2022.10, Strategy & Planning Dev Team): Chat-support solution R&D — core development and upgrades of HappyTalk/HappyBot. Projects: HappyTalk/HappyBot core
+- **Aconic** (2022.02 — 2022.04, 코니아 · Assistant Manager): E-commerce — built v2 of the closed-mall platform 「코니아 플랫폼」. Projects: 코니아 플랫폼 v2
+- **CJ DBASE&** (2020.12 — 2022.01, Tech Team · Assistant Manager (G4) · Systems Development Sr. Analyst): Marketing-report solutions and internal platforms at a search-ad marketing agency. Projects: OAuth2 internal SSO, Report Data Mail Sender, SMS delivery solution, TikTok · GA data fetchers, eBase, PRBase_COMMON, Internal common modules (React), AWS infrastructure management
+- **Illuminarean LLC** (2019.09 — 2020.11, Software Engineer): Built a renewable-energy funding platform. Projects: EnergyShares JP · Admin PL
+- **Implit** (2017.06 — 2019.08, Development Team · Researcher): Broadcast content solutions — broadcast management, ad booking and media-commerce systems for CJ HelloVision (outsourced). Projects: CJ Usage-Based Ad UI Platform, Ad booking system upgrade, CJ Hello SmBot, CJ 8VSB Tcomm, CJ DBBP UI · P2 · Media Commerce, CJ Hello B2B project
+- **Richôn** (2016.12 — 2017.02): Built the company website with in-house ERP integration in mind. Projects: Company website
+
+## Selected work
+- **DEEPOMICS FFPE Plus** (THERAGEN BIO, 2025.02 — 2025.05; Project Lead, AI Bio Analysis · CLI & Web): An analysis solution that filters out false variants in FFPE tissue samples and finds the real ones. Analysis of 30–60 GB FASTQ files shipped on HDDs by courier became an online subscription / pay-as-you-go service: data is trimmed locally to under 100 MB and analyzed on the in-house AI server. Tech: Kotlin, TypeScript, Go, Python, RabbitMQ, PostgreSQL, Nginx
+- **TheraSTRAND P1** (THERAGEN BIO, 2024.08 — 2025.01; Project Lead, Bio RNA Analysis Tool): RNA analysis that analysts ran by hand on request from Read Count CSVs became a tool where customers upload their data and run the analyses they want — designed and built from scratch. Tech: React, Electron, FastAPI, PostgreSQL, MongoDB, AWS, TypeScript
+- **TheraMARINA** (THERAGEN BIO, 2024.01 — 2024.04; Solo build, File Transfer): Replaced manual result delivery over FTP — which meant handing out FTP accounts — with a LIMS-integrated web system where customers download results with an access code. Planned, built and run solo. Tech: Java, Spring Boot, MyBatis, PostgreSQL, Svelte, Next.js
+- **Celleb** (THERAGEN BIO, 2023.07 — 2024.01; Biomarker System, Medical Solution): Collects and parses PubMed abstracts so curators can build a database of curated genomic variants, then search it for biomarkers. Tech: Java, MyBatis, MariaDB, Elasticsearch, jQuery, Tomcat
+- **Next-Gen System** (KIDB, 2023.03 — 2023.06; Architecture, POC · MVP): Designed the architecture for moving a ProC/Delphi money & bond brokerage system, in service for 20+ years, to the web; chose the stack and built a POC/MVP with React + Spring Boot. Tech: Spring Boot, MyBatis, React
+- **EnergyShares JP** (Illuminarean LLC, 2019.09 — 2020.11; Admin PL, Service): A platform where renewable-energy developers (solar, wind and more) manage funding from request to completion with their sites and plans. I was PL for the admin site. Tech: Go, Echo, React, MySQL, AWS
+
+## Open source & side projects
+- [Claude Pet](https://github.com/uygnoey/claude-pet): A desktop pet that floats on your screen and watches your Claude token usage. Runs on macOS (native AppKit, Apple-notarized) and Windows, with a usage pill showing session, weekly and per-model usage plus reset times.
+- [archify](https://github.com/tt-a1i/archify/pull/457): Contributed a Viewer UI translation layer to an agent skill for architecture, workflow and sequence diagrams, so new languages can be added as data without touching the renderer (merged into dev).
+- [llmwiki_json](https://github.com/uygnoey/llmwiki_json): A personal knowledge wiki maintained by AI with JSON as the source of truth. Following Karpathy’s LLM Wiki pattern, the LLM integrates knowledge once and keeps it updated instead of re-assembling sources for every question.
+- [skills-from-claude-blog](https://github.com/uygnoey/skills-from-claude-blog): Pulls official posts from claude.com/blog and turns each one into the Claude Code spec artifacts that fit it. A batch job keeps picking up new posts.
+- **ai-social-batch-publisher**: A batch pipeline that takes AI posts from the Claude blog conversion repo and DeepLearning.AI’s The Batch, and uses a local Codex as the worker to turn them into card news and short-form video. Codex now posts them automatically to Instagram @ai.info.from.officials.
+
+---
+
+# 양연규 — Full-Stack Engineer (한국어)
+
+> Java와 Spring Boot를 주로 사용하지만, 어떠한 언어든 자신있게 개발 가능한 Full-Stack Engineer입니다.
+
+Java와 Spring Boot를 중심으로 Kotlin, Go, Python, TypeScript로도 서비스를 만들었고, 백엔드부터 프론트엔드, AWS 인프라까지 직접 설계하고 구현해 왔습니다.
+
+## 경력
+- **Oprimed** (재직중): 데이터 전처리 솔루션 개발
+- **THERAGEN BIO** (2023.07 — 2026.03): DNA/RNA 실험 및 분석에 대한 플랫폼 개발. 프로젝트: DEEPOMICS FFPE Plus · PL, TheraSTRAND P1 · PL, TheraRADIANT, TheraMARINA, Celleb
+- **KIDB자금중개** (2023.03 — 2023.06): 증권사·은행 간 채권·자금을 중개하는 시스템 유지보수와, ProC/Delphi 레거시를 웹으로 바꾸는 차세대 시스템 POC/MVP. 프로젝트: 차세대 시스템 프로젝트
+- **유앤아이티소프트** (2022.11 — 2023.02, 플랫폼개발팀): 방송통신 솔루션 개발 — LG HelloVision 이커머스 「제철장터」 개발. 프로젝트: LG HelloVision 제철장터
+- **MBI솔루션** (2022.05 — 2022.10, 전략기획 개발팀): 채팅 상담 솔루션 기술 개발 — HappyTalk/HappyBot 코어 개발 및 고도화. 프로젝트: HappyTalk/HappyBot 코어
+- **에이코닉** (2022.02 — 2022.04, 코니아 · 대리): 이커머스 개발 — 폐쇄몰 「코니아 플랫폼」 v2 개발. 프로젝트: 코니아 플랫폼 v2
+- **CJ DBASE&** (2020.12 — 2022.01, Tech팀 · 대리(G4) · 시스템개발 Sr.Analyst): 검색 광고 마케팅 대행사에서 마케팅 리포트 생성 솔루션과 사내 플랫폼 개발. 프로젝트: OAuth2 사내 통합 인증, Report Data Mail Sender, SMS 전송 솔루션, TikTok · GA Data Fetcher, eBase, PRBase_COMMON, 사내 공통 모듈 (React), AWS 인프라 관리
+- **Illuminarean LLC** (2019.09 — 2020.11, Software Engineer): 신재생 에너지 펀딩 플랫폼 개발. 프로젝트: EnergyShares JP · Admin PL
+- **임플릿** (2017.06 — 2019.08, 개발팀 · 연구원): 방송 컨텐츠 솔루션 개발 — CJ 헬로비전 방송 관리·광고 청약·미디어 커머스 시스템 (CJ Hello 외주). 프로젝트: CJ 광고 종량제 UI Platform, 광고 청약 시스템 고도화, CJ Hello SmBot, CJ 8VSB Tcomm, CJ DBBP UI · P2 · Media Commerce, CJ Hello B2B 사업
+- **리치온** (2016.12 — 2017.02): 사내 ERP 연동을 고려한 홈페이지 개발. 프로젝트: 리치온 홈페이지
+
+## 주요 프로젝트
+- **DEEPOMICS FFPE Plus** (테라젠바이오, 2025.02 — 2025.05; Project Lead, AI Bio Analysis · CLI & Web): FFPE 조직 검체의 가짜 변이를 걸러 내고 진짜 변이를 찾는 분석 솔루션. HDD 택배로 받던 30~60GB FASTQ 분석을, 로컬에서 100MB 이내로 추려 사내 AI 서버로 분석하는 온라인 구독·Pay-as-you-go 방식으로 바꿨습니다. 기술: Kotlin, TypeScript, Go, Python, RabbitMQ, PostgreSQL, Nginx
+- **TheraSTRAND P1** (테라젠바이오, 2024.08 — 2025.01; Project Lead, Bio RNA Analysis Tool): 분석자가 Read Count CSV를 요청받아 수작업으로 하던 RNA 분석을, 고객이 직접 업로드해 원하는 분석을 실행하는 툴로 제로 베이스에서 설계·개발했습니다. 기술: React, Electron, FastAPI, PostgreSQL, MongoDB, AWS, TypeScript
+- **TheraMARINA** (테라젠바이오, 2024.01 — 2024.04; 단독 수행, File Transfer): FTP 계정을 넘겨 분석 결과를 수동 전달하던 방식을 없애고, LIMS와 연동해 액세스 코드로 결과를 내려받는 웹 시스템을 기획부터 운영까지 단독으로 만들었습니다. 기술: Java, Spring Boot, MyBatis, PostgreSQL, Svelte, Next.js
+- **Celleb** (테라젠바이오, 2023.07 — 2024.01; Biomarker System, Medical Solution): PubMed 논문 초록을 수집·파싱하고, 큐레이터가 유전체 변이를 큐레이팅한 데이터베이스에서 바이오마커를 검색하는 솔루션입니다. 기술: Java, MyBatis, MariaDB, Elasticsearch, jQuery, Tomcat
+- **차세대 시스템** (KIDB자금중개, 2023.03 — 2023.06; Architecture, POC · MVP): 20년 이상 운영된 ProC/Delphi 기반 자금·채권 중개 시스템을 웹으로 옮기기 위한 아키텍처를 설계하고, 기술 스택을 정해 React + Spring Boot로 POC/MVP를 만들었습니다. 기술: Spring Boot, MyBatis, React
+- **EnergyShares JP** (Illuminarean LLC, 2019.09 — 2020.11; Admin PL, Service): 신재생 에너지(태양열, 풍력 등) 개발사가 부지와 계획을 가지고 펀딩 요청부터 완료까지 관리하는 플랫폼. 관리자(Admin) 사이트 PL을 맡았습니다. 기술: Go, Echo, React, MySQL, AWS
+
+## 오픈소스 · 개인 프로젝트
+- [Claude Pet](https://github.com/uygnoey/claude-pet): 화면에 떠서 Claude 토큰 사용량을 지켜보는 데스크톱 펫. macOS(AppKit 네이티브, Apple 공증)와 Windows를 지원하고, 사용량 필로 세션·주간·모델별 사용률과 리셋 시각을 보여 줍니다.
+- [archify](https://github.com/tt-a1i/archify/pull/457): 아키텍처·워크플로우·시퀀스 다이어그램을 만드는 Agent Skill에, 새 언어를 렌더러 수정 없이 데이터로 추가하는 Viewer UI 번역 구조를 기여했습니다 (dev 브랜치 머지).
+- [llmwiki_json](https://github.com/uygnoey/llmwiki_json): AI가 유지보수하는 JSON 정본 개인 지식 위키. Karpathy의 LLM Wiki 패턴을 따라, 질문할 때마다 원본을 다시 조립하는 대신 LLM이 지식을 한 번 통합해 두고 계속 갱신합니다.
+- [skills-from-claude-blog](https://github.com/uygnoey/skills-from-claude-blog): claude.com/blog 공식 글을 가져와, 글의 성격에 맞는 Claude Code 공식 스펙 산출물로 바꾸는 저장소입니다. 배치가 돌며 새 글을 반영합니다.
+- **ai-social-batch-publisher**: Claude 블로그 변환 저장소와 DeepLearning.AI The Batch의 AI 글을 가져와, 로컬 Codex를 작업자로 써서 카드뉴스와 숏폼 영상으로 만드는 배치 프로젝트입니다. 지금 Codex가 인스타그램 @ai.info.from.officials 에 자동으로 올리고 있습니다.
