@@ -723,7 +723,7 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
     <a href="#stack"><span>Stack</span></a>
     <a href="#contact"><span>Contact</span></a>
   </nav>
-  <div class="menu-foot"><span>instagram.com/uygnoey · github.com/uygnoey</span></div>
+  <div class="menu-foot"><span>github.com/uygnoey · instagram.com/uygnoey</span></div>
 </div>
 
 <div class="hud" aria-hidden="true"><span id="hudSec">(00) INDEX</span><span id="hudPts">— PTS</span><span id="hudFps">— FPS</span><span id="hudClock">SEOUL --:--:--</span></div>
@@ -855,11 +855,11 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
   <section class="sec contact" id="contact" data-formation="at" data-label="(07) CONTACT" aria-labelledby="contact-t">
     <div class="sec-head"><span data-scramble>(07) Contact</span><span data-i18n="contact.r">연락처</span></div>
     <h2 class="sr-only" id="contact-t">Contact</h2>
-    <p class="contact-k">Instagram</p>
-    <a class="mail-big" id="mailBig" href="https://www.instagram.com/uygnoey/" target="_blank" rel="noopener" data-cursor="Open">@uygnoey</a>
+    <p class="contact-k">GitHub</p>
+    <a class="mail-big" id="mailBig" href="https://github.com/uygnoey" target="_blank" rel="noopener" data-cursor="Open">uygnoey</a>
     <div class="contact-actions">
-      <a class="btn magnetic" href="https://www.instagram.com/uygnoey/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a>
       <a class="btn magnetic" href="https://github.com/uygnoey" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+      <a class="btn magnetic" href="https://www.instagram.com/uygnoey/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a>
       <a class="btn magnetic" href="https://yeongyucareer.notion.site/info" target="_blank" rel="noopener"><span data-i18n="contact.notion">Notion 경력기술서</span> <span aria-hidden="true">↗</span></a>
     </div>
     <footer class="foot">
@@ -1796,6 +1796,8 @@ function textFormation(N, txt) {
   const g = c.getContext('2d');
   g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle';
   g.font = '800 430px Archivo, "Noto Sans KR", sans-serif';
+  const fit = (S * 0.92) / g.measureText(txt).width;
+  if (fit < 1) g.font = `800 ${Math.floor(430 * fit)}px Archivo, "Noto Sans KR", sans-serif`;
   g.fillText(txt, S / 2, S / 2 + 16);
   const d = g.getImageData(0, 0, S, S).data, pts = [];
   for (let y = 0; y < S; y += 2) for (let x = 0; x < S; x += 2) if (d[(y * S + x) * 4 + 3] > 140) pts.push(x, y);
@@ -1873,7 +1875,7 @@ async function initGL() {
 
   function setFormation(name, dur = 2.1) {
     if (name === current) return;
-    if (name === 'at' && !F.at) F.at = textFormation(N, '@') || F.sphere;
+    if (name === 'at' && !F.at) F.at = textFormation(N, '</>') || F.sphere;
     const target = F[name];
     if (!target) return;
     const p = U.uProgress.value, fa = aFrom.array, ta = aTo.array;
