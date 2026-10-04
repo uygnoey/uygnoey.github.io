@@ -772,6 +772,12 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
 .fbtn[aria-pressed="true"] sup{color:var(--accent-ink)}
 .fbtn[aria-pressed="true"]::before{transform:none}
 .arc-list{border-top:1px solid var(--line);position:relative}
+/* Safari repaints text when a sibling layer is created or torn down mid-transition, which reads as the title shaking.
+   Keep the animated parts on permanent layers so nothing is promoted or demoted during a toggle. */
+.arc-head,.arc-title{-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.arc-title{will-change:transform}
+.arc-head::before,.arc-plus::before,.arc-plus::after{will-change:transform}
+.arc-body{will-change:height;contain:paint}
 .arc-row{border-bottom:1px solid var(--line);position:relative;background:rgba(8,8,10,.35)}
 .arc-head{position:relative;isolation:isolate;width:100%;-webkit-tap-highlight-color:transparent;display:grid;grid-template-columns:150px minmax(0,1fr) 170px 150px 30px;gap:24px;align-items:center;padding:20px 22px}
 .arc-head::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(200,255,61,.10),rgba(200,255,61,.02));transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
