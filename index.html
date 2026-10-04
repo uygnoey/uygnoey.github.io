@@ -1192,18 +1192,18 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
   </div>
 </div>
 
-<a class="skip" href="#about" data-i18n="skip">본문으로 건너뛰기</a>
+<a class="skip" href="/" data-to="about" data-i18n="skip">본문으로 건너뛰기</a>
 
 <header class="hdr" id="hdr">
-  <a class="logo" href="#top" data-i18n-aria="aria.top" aria-label="맨 위로"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><g class="lg-g"><path class="lg-l" d="M24 17 9 32l15 15"/><path class="lg-r" d="M40 17l15 15-15 15"/></g><circle class="lg-c" cx="32" cy="32" r="5.5"/></svg></span><span class="logo-txt"><b data-i18n="logo.name">양연규</b><em>Full-Stack Engineer</em></span></a>
+  <a class="logo" href="/" data-to="top" data-i18n-aria="aria.top" aria-label="맨 위로"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><g class="lg-g"><path class="lg-l" d="M24 17 9 32l15 15"/><path class="lg-r" d="M40 17l15 15-15 15"/></g><circle class="lg-c" cx="32" cy="32" r="5.5"/></svg></span><span class="logo-txt"><b data-i18n="logo.name">양연규</b><em>Full-Stack Engineer</em></span></a>
   <nav class="nav" data-i18n-aria="aria.nav" aria-label="섹션">
-    <a href="#about" data-sec="about"><span class="roll"><span>About</span><span>About</span></span></a>
-    <a href="#experience" data-sec="experience"><span class="roll"><span>Experience</span><span>Experience</span></span></a>
-    <a href="#work" data-sec="work"><span class="roll"><span>Work</span><span>Work</span></span></a>
-    <a href="#lab" data-sec="lab"><span class="roll"><span>Lab</span><span>Lab</span></span></a>
-    <a href="#archive" data-sec="archive"><span class="roll"><span>Archive</span><span>Archive</span></span></a>
-    <a href="#stack" data-sec="stack"><span class="roll"><span>Stack</span><span>Stack</span></span></a>
-    <a href="#contact" data-sec="contact"><span class="roll"><span>Contact</span><span>Contact</span></span></a>
+    <a href="/" data-to="about" data-sec="about"><span class="roll"><span>About</span><span>About</span></span></a>
+    <a href="/" data-to="experience" data-sec="experience"><span class="roll"><span>Experience</span><span>Experience</span></span></a>
+    <a href="/" data-to="work" data-sec="work"><span class="roll"><span>Work</span><span>Work</span></span></a>
+    <a href="/" data-to="lab" data-sec="lab"><span class="roll"><span>Lab</span><span>Lab</span></span></a>
+    <a href="/" data-to="archive" data-sec="archive"><span class="roll"><span>Archive</span><span>Archive</span></span></a>
+    <a href="/" data-to="stack" data-sec="stack"><span class="roll"><span>Stack</span><span>Stack</span></span></a>
+    <a href="/" data-to="contact" data-sec="contact"><span class="roll"><span>Contact</span><span>Contact</span></span></a>
   </nav>
   <div class="lang-sw" role="group" data-i18n-aria="aria.lang" aria-label="언어 선택">
     <button type="button" data-lang="ko" aria-pressed="true" lang="ko">KO</button>
@@ -1214,13 +1214,13 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
 
 <div class="menu" id="menu" hidden>
   <nav data-i18n-aria="aria.menu" aria-label="모바일 메뉴">
-    <a href="#about"><span>About</span></a>
-    <a href="#experience"><span>Experience</span></a>
-    <a href="#work"><span>Work</span></a>
-    <a href="#lab"><span>Lab</span></a>
-    <a href="#archive"><span>Archive</span></a>
-    <a href="#stack"><span>Stack</span></a>
-    <a href="#contact"><span>Contact</span></a>
+    <a href="/" data-to="about"><span>About</span></a>
+    <a href="/" data-to="experience"><span>Experience</span></a>
+    <a href="/" data-to="work"><span>Work</span></a>
+    <a href="/" data-to="lab"><span>Lab</span></a>
+    <a href="/" data-to="archive"><span>Archive</span></a>
+    <a href="/" data-to="stack"><span>Stack</span></a>
+    <a href="/" data-to="contact"><span>Contact</span></a>
   </nav>
   <div class="menu-foot"><span>mail@yeongyu.me · github.com/uygnoey</span></div>
 </div>
@@ -1251,7 +1251,7 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
           <li><b>3</b><span>Projects as PL</span></li>
           <li class="now"><b><i class="pulse" aria-hidden="true"></i>Oprimed</b><span data-i18n="hero.now">재직중</span></li>
         </ul>
-        <a class="scroll-cue" href="#about" data-cursor="Scroll"><span>Scroll</span><i aria-hidden="true"></i></a>
+        <a class="scroll-cue" href="/" data-to="about" data-cursor="Scroll"><span>Scroll</span><i aria-hidden="true"></i></a>
       </div>
     </div>
   </section>
@@ -1366,7 +1366,7 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
       <span>© 2026 Yeongyu Yang · 양연규</span>
       <span>Built with GSAP · Three.js · Lenis · Matter.js</span>
       <button type="button" class="cookie-link" id="cookieSettings" data-i18n="cookie.settings">쿠키 설정</button>
-      <a href="#top" class="to-top" data-cursor="Top">Back to top ↑</a>
+      <a href="/" data-to="top" class="to-top" data-cursor="Top">Back to top ↑</a>
     </footer>
   </section>
 </main>
@@ -1390,13 +1390,14 @@ const LANG = (() => {
     let kept = false;
     try { localStorage.setItem('yy-lang', q); kept = true; } catch (e) {}
     try { sessionStorage.setItem('yy-lang', q); kept = true; } catch (e) {}
-    if (kept) { params.delete('lang'); const rest = params.toString(); history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash); }
     return q;
   }
   try { const s = sessionStorage.getItem('yy-lang') || localStorage.getItem('yy-lang'); if (s === 'ko' || s === 'en') return s; } catch (e) {}
   const langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'ko'];
   return langs.some((l) => /^ko\b/i.test(l)) ? 'ko' : 'en';
 })();
+// the address bar always stays at the bare page URL: no ?query, no #section
+if (location.search || location.hash) history.replaceState(null, '', location.pathname);
 
 const STR = {
   ko: {
@@ -2102,7 +2103,7 @@ function scrollToHash(hash) {
 }
 
 let menuOpen = false;
-function setMenu(open) {
+function setMenu(open, afterClose) {
   const menu = $('#menu'), btn = $('#menuBtn');
   if (open === menuOpen) return;
   menuOpen = open;
@@ -2116,7 +2117,8 @@ function setMenu(open) {
       gsap.fromTo('#menu nav a span', { yPercent: 110 }, { yPercent: 0, duration: 0.9, ease: 'expo.out', stagger: 0.05, delay: 0.25 });
     }
   } else {
-    const done = () => { menu.hidden = true; lenis && lenis.start(); };
+    // Lenis ignores scrollTo while stopped, so anything that scrolls must wait until it is running again
+    const done = () => { menu.hidden = true; lenis && lenis.start(); afterClose && afterClose(); };
     if (REDUCE) done();
     else gsap.to(menu, { clipPath: 'circle(0% at 92% 4%)', duration: 0.7, ease: 'expo.inOut', onComplete: done });
   }
@@ -2124,12 +2126,11 @@ function setMenu(open) {
 
 function setupNav() {
   document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href^="#"]');
-    if (!a) return;
-    const h = a.getAttribute('href');
-    if (!h || h.length < 2) return;
+    const a = e.target.closest('a[data-to]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const h = '#' + a.dataset.to;
     e.preventDefault();
-    if (menuOpen) { setMenu(false); setTimeout(() => scrollToHash(h), 450); }
+    if (menuOpen) setMenu(false, () => scrollToHash(h));
     else scrollToHash(h);
   });
   $('#menuBtn').addEventListener('click', () => setMenu(!menuOpen));
@@ -3078,10 +3079,11 @@ function setupArchive() {
       const list = $('#arcList');
       clearTimeout(list._rf); list._rf = setTimeout(() => ScrollTrigger.refresh(true), 820);
       if (open) {
-        gsap.fromTo(body, { height: 0 }, { height: 'auto', duration: 0.75, ease: 'expo.out', snap: 'height' });
+        // tween to a measured whole-pixel height, then hand back to auto (snapping an 'auto' end value collapses it to 0)
+        gsap.fromTo(body, { height: 0 }, { height: body.scrollHeight, duration: 0.75, ease: 'expo.out', snap: 'height', overwrite: true, onComplete: () => { body.style.height = 'auto'; } });
         gsap.fromTo($$('.arc-anim', body), { y: FINE ? 18 : 0, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7, ease: 'expo.out', stagger: 0.06, delay: 0.08 });
       } else {
-        gsap.to(body, { height: 0, duration: 0.55, ease: 'expo.inOut', snap: 'height' });
+        gsap.fromTo(body, { height: body.offsetHeight }, { height: 0, duration: 0.55, ease: 'expo.inOut', snap: 'height', overwrite: true });
       }
     });
   });
