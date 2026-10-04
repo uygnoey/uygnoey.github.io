@@ -772,12 +772,6 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
 .fbtn[aria-pressed="true"] sup{color:var(--accent-ink)}
 .fbtn[aria-pressed="true"]::before{transform:none}
 .arc-list{border-top:1px solid var(--line);position:relative}
-/* Safari repaints text when a sibling layer is created or torn down mid-transition, which reads as the title shaking.
-   Keep the animated parts on permanent layers so nothing is promoted or demoted during a toggle. */
-.arc-head,.arc-title{-webkit-backface-visibility:hidden;backface-visibility:hidden}
-.arc-title{will-change:transform}
-.arc-head::before,.arc-plus::before,.arc-plus::after{will-change:transform}
-.arc-body{will-change:height;contain:paint}
 .arc-row{border-bottom:1px solid var(--line);position:relative;background:rgba(8,8,10,.35)}
 .arc-head{position:relative;isolation:isolate;width:100%;-webkit-tap-highlight-color:transparent;display:grid;grid-template-columns:150px minmax(0,1fr) 170px 150px 30px;gap:24px;align-items:center;padding:20px 22px}
 .arc-head::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(200,255,61,.10),rgba(200,255,61,.02));transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
@@ -3053,7 +3047,9 @@ function setupArchive() {
   const rows = $$('.arc-row');
   if (!REDUCE) {
     gsap.set(rows, { y: 36, autoAlpha: 0 });
-    ScrollTrigger.batch(rows, { start: 'top 94%', once: true, onEnter: (b) => gsap.to(b, { y: 0, autoAlpha: 1, duration: 0.9, ease: 'expo.out', stagger: 0.045, overwrite: true }) });
+    // clearProps: a leftover transform keeps each row on its own layer, and Safari re-snaps that layer to whole pixels
+    // every frame while the row grows, which shakes the row header by a pixel
+    ScrollTrigger.batch(rows, { start: 'top 94%', once: true, onEnter: (b) => gsap.to(b, { y: 0, autoAlpha: 1, duration: 0.9, ease: 'expo.out', stagger: 0.045, overwrite: true, clearProps: 'transform,opacity,visibility' }) });
   }
   const btns = $$('.fbtn');
   btns.forEach((b) => b.addEventListener('click', () => {
@@ -3068,7 +3064,7 @@ function setupArchive() {
       duration: 0.75, ease: 'expo.inOut', absolute: true, stagger: 0.012, prune: true,
       onEnter: (els) => gsap.fromTo(els, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: 'expo.out', stagger: 0.025 }),
       onLeave: (els) => gsap.to(els, { autoAlpha: 0, y: -14, duration: 0.35, ease: 'power2.in' }),
-      onComplete: () => { gsap.set(rows.filter(show), { autoAlpha: 1, y: 0 }); ScrollTrigger.refresh(); }
+      onComplete: () => { gsap.set(rows.filter(show), { clearProps: 'transform,opacity,visibility' }); ScrollTrigger.refresh(); }
     });
   }));
   rows.forEach((r) => {
@@ -3082,10 +3078,10 @@ function setupArchive() {
       const list = $('#arcList');
       clearTimeout(list._rf); list._rf = setTimeout(() => ScrollTrigger.refresh(true), 820);
       if (open) {
-        gsap.fromTo(body, { height: 0 }, { height: 'auto', duration: 0.75, ease: 'expo.out' });
+        gsap.fromTo(body, { height: 0 }, { height: 'auto', duration: 0.75, ease: 'expo.out', snap: 'height' });
         gsap.fromTo($$('.arc-anim', body), { y: FINE ? 18 : 0, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7, ease: 'expo.out', stagger: 0.06, delay: 0.08 });
       } else {
-        gsap.to(body, { height: 0, duration: 0.55, ease: 'expo.inOut' });
+        gsap.to(body, { height: 0, duration: 0.55, ease: 'expo.inOut', snap: 'height' });
       }
     });
   });
