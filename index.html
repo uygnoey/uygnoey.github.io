@@ -774,11 +774,12 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
 .arc-list{border-top:1px solid var(--line);position:relative}
 .arc-row{border-bottom:1px solid var(--line);position:relative;background:rgba(8,8,10,.35)}
 .arc-head{position:relative;isolation:isolate;width:100%;-webkit-tap-highlight-color:transparent;display:grid;grid-template-columns:150px minmax(0,1fr) 170px 150px 30px;gap:24px;align-items:center;padding:20px 22px}
-.arc-head::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(200,255,61,.10),rgba(200,255,61,.02));transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
-.arc-row.open .arc-head::before{transform:scaleX(1)}
-@media (hover:hover) and (pointer:fine){.arc-head:hover::before{transform:scaleX(1)}.arc-head:hover .arc-title{transform:scale(1.045)}}
+/* no transforms anywhere in a row: Safari re-snaps transformed text to the pixel grid every frame, which reads as shaking */
+.arc-head::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(200,255,61,.10),rgba(200,255,61,.02));opacity:0;transition:opacity .4s ease}
+.arc-row.open .arc-head::before{opacity:1}
+@media (hover:hover) and (pointer:fine){.arc-head:hover::before{opacity:1}.arc-head:hover .arc-title{color:var(--accent)}}
 .arc-period{font-family:var(--f-mono);font-size:12px;color:var(--muted);white-space:nowrap}
-.arc-title{font-family:var(--f-display);font-weight:650;font-variation-settings:"wght" 650,"wdth" 100;font-size:clamp(16px,1.75vw,26px);line-height:1.25;transform-origin:0 50%;transition:transform .5s var(--ease),color .4s;min-width:0}
+.arc-title{font-family:var(--f-display);font-weight:650;font-variation-settings:"wght" 650,"wdth" 100;font-size:clamp(16px,1.75vw,26px);line-height:1.25;transition:color .3s ease;min-width:0}
 .arc-title .pl{font-style:normal;font-family:var(--f-mono);font-size:10px;font-weight:700;letter-spacing:.06em;background:var(--accent);color:var(--accent-ink);padding:2px 7px;border-radius:999px;margin-left:10px;vertical-align:4px}
 .arc-co{font-size:13px;color:var(--fg-2)}
 .arc-tag{font-family:var(--f-mono);font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -3081,7 +3082,7 @@ function setupArchive() {
       if (open) {
         // tween to a measured whole-pixel height, then hand back to auto (snapping an 'auto' end value collapses it to 0)
         gsap.fromTo(body, { height: 0 }, { height: body.scrollHeight, duration: 0.75, ease: 'expo.out', snap: 'height', overwrite: true, onComplete: () => { body.style.height = 'auto'; } });
-        gsap.fromTo($$('.arc-anim', body), { y: FINE ? 18 : 0, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7, ease: 'expo.out', stagger: 0.06, delay: 0.08 });
+        gsap.fromTo($$('.arc-anim', body), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.45, ease: 'power1.out', delay: 0.12, overwrite: true });
       } else {
         gsap.fromTo(body, { height: body.offsetHeight }, { height: 0, duration: 0.55, ease: 'expo.inOut', snap: 'height', overwrite: true });
       }
