@@ -540,7 +540,8 @@ html[lang="en"] .about-lead{letter-spacing:-.02em;max-width:30em}
 
 /* ============ experience ============ */
 .exp-wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,72px);align-items:start}
-.exp-aside{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center}
+/* pinned with position:fixed by ScrollTrigger: Safari repaints position:sticky a frame late while scrolling fast, which shakes it */
+.exp-aside{position:relative;height:100vh;height:100svh;display:flex;align-items:center}
 .exp-aside-in{width:100%}
 .exp-k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .roller{display:grid;overflow:hidden}
@@ -2712,6 +2713,7 @@ function setupExperience() {
     const lis = $$('.exp-proj li', it);
     if (lis.length) gsap.from(lis, { clearProps: 'transform,opacity,visibility', y: 16, autoAlpha: 0, duration: 0.8, ease: 'expo.out', stagger: 0.04, scrollTrigger: { trigger: it, start: 'top 76%' } });
   });
+  ScrollTrigger.create({ trigger: '.exp-wrap', start: 'top top', end: 'bottom bottom', pin: '.exp-aside', pinSpacing: false, invalidateOnRefresh: true });
   gsap.to('#expLineFill', { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.exp-list', start: 'top 62%', end: 'bottom 62%', scrub: true } });
 }
 
