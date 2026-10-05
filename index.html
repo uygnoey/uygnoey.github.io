@@ -2087,7 +2087,10 @@ function buildAll() {
    lenis / nav / cursor / hud
    ========================================================= */
 function setupLenis() {
-  if (REDUCE || !window.Lenis) return;
+  // Safari paints position:sticky one frame behind JS-driven scrolling, so with Lenis the sticky timeline label shakes
+  // by a pixel or two on every frame; Safari's own scrolling is already smooth, so keep it native there
+  const SAFARI = /^((?!chrome|chromium|crios|fxios|edg|android).)*safari/i.test(navigator.userAgent);
+  if (REDUCE || !window.Lenis || SAFARI) return;
   lenis = new window.Lenis({ lerp: 0.085, smoothWheel: true, wheelMultiplier: 1 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((tm) => lenis.raf(tm * 1000));
@@ -2663,15 +2666,23 @@ function setupAbout() {
 function roll(el, text) {
   if (el.dataset.v === text) return;
   el.dataset.v = text;
-  const old = el.lastElementChild;
+  // old and new labels slide up together with the same duration and easing, so they never overlap and the cell is
+  // never empty; a change that arrives mid-slide drops the leftovers instead of stacking competing tweens
+  const spans = [...el.children];
+  const cur = spans.pop();
+  spans.forEach((s) => { gsap.killTweensOf(s); s.remove(); });
   const nu = document.createElement('span');
-  nu.innerHTML = [...text].map((c) => `<i class="rc">${c === ' ' ? '&nbsp;' : esc(c)}</i>`).join('');
+  nu.textContent = text;
   el.appendChild(nu);
-  gsap.fromTo(nu.children, { yPercent: 115 }, { clearProps: 'transform,opacity,visibility', yPercent: 0, duration: 0.9, ease: 'expo.out', stagger: 0.035 });
-  if (old && old !== nu) {
-    const oc = old.children.length ? old.children : [old];
-    gsap.to(oc, { yPercent: -115, duration: 0.55, ease: 'expo.in', stagger: 0.02, onComplete: () => old.remove() });
+  const D = 0.45, E = 'power3.out';
+  let from = 0;
+  if (cur) {
+    gsap.killTweensOf(cur);
+    const y = Number(gsap.getProperty(cur, 'yPercent')) || 0;
+    from = y + 100; // the new label stays exactly one line below the old one for the whole slide
+    gsap.fromTo(cur, { yPercent: y }, { yPercent: y - from, duration: D, ease: E, onComplete: () => cur.remove() });
   }
+  gsap.fromTo(nu, { yPercent: from }, { yPercent: 0, duration: D, ease: E, clearProps: 'transform' });
 }
 
 function setupExperience() {
