@@ -1,10 +1,10 @@
 {
-  "updated": "2026-11-12T14:01:58Z",
+  "updated": "2026-11-18T04:46:27Z",
   "repos": {
     "uygnoey/claude-pet": {
-      "version": "v1.1.1",
-      "releases": 31,
-      "commits": 264
+      "version": "v1.1.2",
+      "releases": 32,
+      "commits": 273
     }
   }
 }
